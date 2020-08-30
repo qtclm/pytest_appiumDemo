@@ -1,0 +1,7 @@
+- id: com.xueqiu.android:id/search_input_text
+  input: alibaba
+  wait: 5
+- id: name
+- id: current_price
+  get: text
+  assert_less_than_or_equal_to: 50
