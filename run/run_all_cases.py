@@ -2,6 +2,7 @@ import os
 import time
 import pytest
 from Common.ServersManager import excuteCommand
+sys.path.append(r'F:\pytest_appiumDemo')
 
 @pytest.mark.usefixtures("closeApp")
 def test_runAllCase():
