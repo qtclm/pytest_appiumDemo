@@ -8,9 +8,9 @@ def append_projectDir_to_syspath():
     sys.path=[]
     sys.path.append(rootpath)#将工程根目录加入到python搜索路径中
     sys.path.extend([os.path.join(rootpath,i) for i in os.listdir(rootpath)
-        if os.path.isdir(os.path.join(rootpath,i)) and i[0]!='.'])#将工程目录下的一级目录添加到python搜索路径中
+    if os.path.isdir(os.path.join(rootpath,i)) and i[0]!='.'])#将工程目录下的一级目录添加到python搜索路径中
     sys.path.extend(syspath)
-    print(sys.path)
+    # print(sys.path)
 
 append_projectDir_to_syspath()
 
@@ -28,6 +28,7 @@ def Report_view():
 
 
 if __name__=="__main__":
+    pass
     # test_runAllCase()
     # Report_view()
     # print(sys.path)
