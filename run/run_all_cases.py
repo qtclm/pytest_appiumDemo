@@ -24,7 +24,7 @@ def test_runAllCase():
 
 
 def Report_view():
-    excuteCommand(command="allure serve report ../report/html",join_start=True,commandType='system',join_start=True)
+    excuteCommand(command="allure serve report ../report/html",join_start=True,commandType='system')
 
 
 if __name__=="__main__":
