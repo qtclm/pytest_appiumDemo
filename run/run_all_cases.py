@@ -20,11 +20,11 @@ import pytest
 @pytest.mark.usefixtures("closeApp")
 def test_runAllCase():
     os.chdir('../testCase_shishike')
-    excuteCommand(command="python -m pytest --alluredir ../report/html/",commandType='system')  # 生成allure报告
+    excuteCommand(command="python -m pytest --alluredir ../report/html/",commandType='system',join_start=True)  # 生成allure报告
 
 
 def Report_view():
-    excuteCommand(command="allure serve report ../report/html",join_start=True,commandType='system')
+    excuteCommand(command="allure serve report ../report/html",join_start=True,commandType='system',join_start=True)
 
 
 if __name__=="__main__":
