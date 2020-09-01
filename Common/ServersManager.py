@@ -7,7 +7,7 @@ from sys import platform
 from tool.OperationDatas import OperationYaml
 
 
-def get_data(file_path='../config/Commands.yaml'):
+def get_data(file_path='Commands.yaml'):
     yaml=OperationYaml(file_path=file_path)
     commands=yaml.read_data()
     return commands

@@ -3,7 +3,7 @@ from appium import webdriver
 from appium.webdriver.webdriver import WebDriver
 from Common.ServersManager import *
 
-def caps_info(file_path='../config/application_caps.yaml',caps='shishikeCaps'):
+def caps_info(file_path='application_caps.yaml',caps='shishikeCaps'):
     yaml=get_data(file_path=file_path)
     caps=yaml[caps]
     return caps
