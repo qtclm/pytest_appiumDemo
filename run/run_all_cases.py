@@ -10,7 +10,7 @@ def append_projectDir_to_syspath():
     sys.path.extend([os.path.join(rootpath,i) for i in os.listdir(rootpath)
     if os.path.isdir(os.path.join(rootpath,i)) and i[0]!='.'])#将工程目录下的一级目录添加到python搜索路径中
     sys.path.extend(syspath)
-    print(sys.path)
+    # print(sys.path)
 
 append_projectDir_to_syspath()
 

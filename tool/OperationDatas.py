@@ -21,9 +21,9 @@ class OperationYaml(object):
     def __init__(self, path='../config',file_path=None):
         yaml_path = os.path.join(os.path.dirname(__file__),path)
         if file_path == None:
-            self.file_path = os.path.join(yaml_path, 'Commands.yaml')
+            self.file_path = os.path.join(yaml_path,'Commands.yaml')
         else:
-            self.file_path = os.path.join(yaml_path, file_path)
+            self.file_path = os.path.join(yaml_path,file_path)
 
         # self.data=self.read_data()
 
@@ -255,9 +255,22 @@ class OperationExcle(object):
 
 
 if __name__ == '__main__':
-    dict1 = {'crm_course_name':{"is_refund_audit":333,'this':100}}
+    # dict1 = {'crm_course_name':{"is_refund_audit":333,'this':100}}
     # opym=OperationYaml()#'dependFieldInfo.yaml'  #'dependKeyInfo.yaml'
     # print(opym.readDataForKey('config'))
-    opx=OperationExcle()
+    # opx=OperationExcle()
     # # print(opx.get_cols_data(7))
     # print(opx.get_row_num(11))
+    import os
+
+    print('***获取当前目录***')
+    print(os.getcwd())
+    print(os.path.abspath(os.path.dirname(__file__)))
+
+    print('***获取上级目录***')
+    print(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+    print(os.path.abspath(os.path.dirname(os.getcwd())))
+    print(os.path.abspath(os.path.join(os.getcwd(), "..")))
+
+    print('***获取上上级目录***')
+    print(os.path.abspath(os.path.join(os.getcwd(), "../..")))

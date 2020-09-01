@@ -14,13 +14,14 @@ class Test_kuaishouOpenShop():
 
     @pytest.mark.run(order=1)
     @allure.story('快手开店页面')
-    # @pytest.mark.skip(reason='测试以通过，暂不运行')
+    @pytest.mark.skip(reason='测试以通过，暂不运行')
     @pytest.mark.dependency(name='kuaishouOpenShop')
     def test_kuaishouOpenShopPage(self, kuaishouShopPage):
         assert_list = ['同意授权', '输入运维信息', '《商家授权协议》']
         kuaishouShopPage.batch_assert(assert_obj=assert_list)
 
     @pytest.mark.run(order=2)
+    @pytest.mark.skip(reason='测试以通过，暂不运行')
     @allure.story('快手开店页面-输入运维信息-点击授权')
     @pytest.mark.dependency(name='kuaishouOpenAuth', depends=['kuaishouOpenShop'])
     def test_kuaishouOpenAuthPage(self, kuaishouShopPage):
@@ -29,6 +30,7 @@ class Test_kuaishouOpenShop():
         page.batch_assert(assert_obj=assert_list)
 
     @pytest.mark.run(order=3)
+    @pytest.mark.skip(reason='测试以通过，暂不运行')
     @allure.story('快手开店页面-点击我要导入，跳转快手登录页面')
     @pytest.mark.dependency(name='iWantAuth', depends=['kuaishouOpenAuth'])
     def test_kuaishouiWantAuthPage(self, kuaishouShopPage):
