@@ -115,7 +115,7 @@ class basePage(log):
 
     def getScreenShot(self):
         """重写截图方法"""
-        screenshot_path='../img/screenshot'
+        screenshot_path='../report/img/screenshot'
         if not os.path.exists(screenshot_path):
             os.makedirs(screenshot_path)
         self.sh_file = os.path.join(screenshot_path, 'errorImg_%s.png' %(time.strftime("%Y%m%d%H%M%S")))

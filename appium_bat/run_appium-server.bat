@@ -1,1 +1,0 @@
-start node E:\nodejs\node_global\node_modules\appium\build\lib\main.js -a 127.0.0.1 -p 4723 -bp 4724
