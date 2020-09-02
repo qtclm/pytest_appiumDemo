@@ -8,13 +8,8 @@ from shishikePages.kuaishouOpenPage import kuaishouOpenPage
 from shishikePages.meituanGroupBuyingPage import meituanGroupBuyingPage
 from shishikePages.evaluateManagePage import evaluateManagePage
 from shishikePages.koubeiConfigPage import koubeiConfigPage
-from tool.Mongo_connect import Mongo_gldexp
 
 class PlatformServerPage(basePage):
-    gldexp_mongo = Mongo_gldexp()
-    gldexp_mongo.delete_one_collection(collection_name='partnerShopInfo',
-                                            search_col={"source": -92, "shopId": 810108953})#删除快手开店信息
-
     _meituanOpen_locator = (
     basePage.by.XPATH, basePage.get_xpath_loc(class_loc=basePage._class_locator, text_loc='美团开通'))  # 美团开通图标位置
     _eleOpen_locator = (
