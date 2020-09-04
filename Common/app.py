@@ -51,6 +51,7 @@ class App:
         # 获取设备列表：如果为空，启动模拟器，默认启动一个
         while True:
             devices = get_device_list()
+            print(devices)
             cls.log.info("devices：{}".format(devices))
             if '127.0.0.1:5555' in devices:
                 restart_adbServer()
@@ -61,7 +62,7 @@ class App:
                 excuteCommand(commands["start_leidian4"])
                 # print("执行启动")
                 # cls.run_emulator(emulatorName)
-                # cls.log.info("开始启动模拟设备")
+                cls.log.info("开始启动模拟设备")
                 time.sleep(10)
 
         # 检测appium-server是否启动
@@ -71,7 +72,7 @@ class App:
             if appium_server_flag:
                 break
             else:
-                # cls.log.info("开始启动appium-service")
+                cls.log.info("开始启动appium-service")
                 start_appiumServer(port_01=port)
                 time.sleep(5)
         # 检测app是否安装
