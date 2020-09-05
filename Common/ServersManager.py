@@ -86,7 +86,7 @@ def get_emulator_list():
  # 4.根据系统和端口来启动appium server
 def start_appiumServer(cap_info,port_01=4723, port_02=4724):
     systemstr = getsystemType()
-    time_str = time_to_str(format="%Y%m%d%H%M%S")
+    time_str = time_to_str(format="%Y%m%d%H%M")
     logdir="../report/appium_log/" + cap_info['deviceName'] + "_" + str(time_str) + "/"+ "appium.log"
     if systemstr in commands['windows_platform']:
         # os.system默认阻塞当前程序执行，在cmd命令前加入start可不阻塞当前程序执行
