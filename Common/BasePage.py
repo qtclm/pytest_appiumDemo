@@ -229,13 +229,13 @@ class basePage(log):
     def elemeIsInPageSourse(self,loc,loc_type='text',timeout=3):
         if loc_type in ('id','resource-id'):
             loc_type='resource-id'
-        elif loc_type in ('text'):
+        elif loc_type in ('text',):
             loc_type='text'
-        elif loc_type in ('class'):
+        elif loc_type in ('class',):
             loc_type='class'
-        elif loc_type in ('packege'):
+        elif loc_type in ('packege',):
             loc_type='package'
-        elif loc_type in ('content-desc'):
+        elif loc_type in ('content-desc',):
             loc_type='content-desc'
         else:
             raise Exception("暂不支持的元素类型")
