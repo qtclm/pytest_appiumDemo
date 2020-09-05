@@ -247,11 +247,11 @@ class basePage(log):
             if '{}="{}"'.format(loc_type,loc[1]) in page_source:
                 return True
             self.getScreenShot()
-            self.log.info('当前页面结构：\n', page_source)
+            self.log.info('当前页面结构：\n{}'.format(page_source) )
             return False
         elif loc and '{}="{}"'.format(loc_type,loc) in page_source:
             return True
-        self.log.info('当前页面结构：\n',page_source)
+        self.log.info('当前页面结构：\n{}'.format(page_source))
         return False
         # self.log.info(page_source)
         # print(page_source)
