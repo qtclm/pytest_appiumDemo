@@ -2,9 +2,36 @@ import os
 import re
 import subprocess
 import tempfile
-import time
+import time,datetime
 from sys import platform
 from tool.OperationDatas import OperationYaml
+
+
+def time_to_str(timeOrTimeStr=0,format="%Y-%m-%d %H:%M:%S"):  # 时间戳转换为字符串
+    try:
+        timeStamp = int(timeOrTimeStr)
+        if len(str(timeStamp)) >= 13:
+            timeStamp /= 1000
+        if not timeStamp:
+            timeStamp = time.time()
+        timeArray = time.localtime(timeStamp)
+        otherStyleTime = time.strftime(format, timeArray)
+        return otherStyleTime
+    except Exception as error:
+        print("数据处理失败，原因为:\n%s" % (error))
+
+
+def str_to_time(time_to_str='1970-01-01 00:00:00'):  # 字符串转换为时间戳
+    try:
+        if time_to_str == '1970-01-01 00:00:00':
+            time_to_str = time_to_str()
+        d = datetime.datetime.strptime(time_to_str, "%Y-%m-%d %H:%M:%S")
+        t = d.timetuple()
+        timeStamp = int(time.mktime(t))
+        # print(timeStamp)
+        return timeStamp
+    except Exception as error:
+        print("数据处理失败，原因为:\n%s" % (error))
 
 
 def get_data(file_path='Commands.yaml'):
@@ -57,15 +84,17 @@ def get_emulator_list():
     return result
 
  # 4.根据系统和端口来启动appium server
-def start_appiumServer(port_01=4723, port_02=4724):
+def start_appiumServer(cap_info,port_01=4723, port_02=4724):
     systemstr = getsystemType()
+    time_str = time_to_str(format="%Y%m%d%H%M%S")
+    logdir="../report/appium_log/" + cap_info['deviceName'] + "_" + str(time_str) + "/"+ "appium.log"
     if systemstr in commands['windows_platform']:
         # os.system默认阻塞当前程序执行，在cmd命令前加入start可不阻塞当前程序执行
-        command=commands['windows_start_appiumServer'].format(port_01,port_02)
+        command=commands['windows_start_appiumServer'].format(port_01,port_02)+logdir
         excuteCommand(command,commandType='system',join_start=True)
 
     else:
-        command=commands['linux_start_appiumServer'].format(port_01,port_02)
+        command=commands['linux_start_appiumServer'].format(port_01,port_02)+logdir
         excuteCommand(command,commandType='system',join_start=True)
     time.sleep(2)
     print("appium-server started")
@@ -188,11 +217,11 @@ def excuteCommand(command,commandType='subPopen',join_start=False):
         return None
 
 if __name__=="__main__":
-    # pass
+    pass
     # get_command()
     # print(getsystemType())
     # print(get_device_list())
-    print(appiumServercheck())
+    # print(start_appiumServer())
     # start_appiumServer()
     # kill_appiumServer()
     # device_list=get_emulator_list()

@@ -2,6 +2,7 @@ from appium import webdriver
 # from selenium.webdriver.remote.webdriver import WebDriver
 from appium.webdriver.webdriver import WebDriver
 from Common.ServersManager import *
+import time
 
 def caps_info(file_path='application_caps.yaml',caps='shishikeCaps'):
     yaml=get_data(file_path=file_path)
@@ -17,13 +18,13 @@ else:
     from shishikePages.loginPage import LoginPage
 
 
-
 class App:
     log=LoginPage(WebDriver).log
 
-    @classmethod
-    def start_appiumSever(cls,port_01=4723,port_02=4724):
-        start_appiumServer(port_01=port_01,port_02=port_02)
+    # @classmethod
+    # def startAppiumSever(cls,port_01=4723,port_02=4724):
+    #     # print(logdir_name)
+    #     start_appiumServer(cap_info,port_01=port_01,port_02=port_02)
 
     @classmethod
     def run_emulator(cls,emulatorName):
@@ -47,7 +48,8 @@ class App:
 
     driver:WebDriver=None
     @classmethod
-    def startApp(cls,port=4723,implicitly_wait_time=20,emulatorName='android10'):
+    def startApp(cls,port=4723,port_02=4724,implicitly_wait_time=20,emulatorName='android10'):
+
         # 获取设备列表：如果为空，启动模拟器，默认启动一个
         while True:
             devices = get_device_list()
@@ -73,26 +75,27 @@ class App:
                 break
             else:
                 cls.log.info("开始启动appium-service")
-                start_appiumServer(port_01=port)
+                start_appiumServer(cap_info,port_01=port,port_02=port_02)
                 time.sleep(5)
+
         # 检测app是否安装
-        packages=get_packages();app_caps=cap_info
-        if not app_caps['appPackage'] in packages :
-            if  app_caps['appPackage']=='com.xueqiu.android':
-                app_caps['app']='../app/com.xueqiu.android_12.13.4_270.apk'
+        packages=get_packages();
+        if not cap_info['appPackage'] in packages :
+            if  cap_info['appPackage']=='com.xueqiu.android':
+                cap_info['app']='../app/com.xueqiu.android_12.13.4_270.apk'
                 # cls.log.info("开始安装雪球app")
                 print("开始安装雪球app")
-            elif app_caps['appPackage']=='io.appium.android.apis':
-                app_caps['app']='../app/ApiDemos-debug.apk'
+            elif cap_info['appPackage']=='io.appium.android.apis':
+                cap_info['app']='../app/ApiDemos-debug.apk'
                 # cls.log.info("开始安装apiDemos")
                 print("开始安装apiDemos")
-            elif app_caps['appPackage'] == 'com.shishike.mobile':
-                app_caps['app'] = '../app/OnMobile-official-6.3.1.apk'
+            elif cap_info['appPackage'] == 'com.shishike.mobile':
+                cap_info['app'] = '../app/OnMobile-official-6.3.1.apk'
                 # cls.log.info("开始安装shishike")
                 print("开始安装shishike")
             else:
                 raise Exception("暂不支持的app包名，无法自动安装")
-        cls.driver = webdriver.Remote("http://127.0.0.1:{}/wd/hub".format(port), app_caps)
+        cls.driver = webdriver.Remote("http://127.0.0.1:{}/wd/hub".format(port), cap_info)
         cls.driver.implicitly_wait(implicitly_wait_time)
         cls.log.info('启动app')
         return LoginPage(cls.driver)
@@ -108,6 +111,7 @@ if __name__=="__main__":
     # get_packages()
     # App.reset_appData()
     # App.restart_app()
+    # App.startApp()
     App.startApp()
     # print(get_packages())
     # App.caps_info()
