@@ -14,6 +14,7 @@ def closeApp():
     yield
     App.quit()
 
+
 @pytest.fixture(scope='session')
 @allure.feature("登录")
 @allure.step("1.跳转至登录页；2.输入用户名、密码；3.点击登录")
