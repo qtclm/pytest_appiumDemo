@@ -29,6 +29,6 @@ def Report_view():
 
 if __name__=="__main__":
     test_runAllCase()
-    Report_view()
+    # Report_view()
     # print(sys.path)
 
